@@ -2,6 +2,7 @@ package com.biblioteca.biblioteca.controller;
 
 import com.biblioteca.biblioteca.entities.Libro;
 import com.biblioteca.biblioteca.service.LibroService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,13 +28,13 @@ public class LibroController {
     }
 
     @PostMapping
-    public ResponseEntity<Libro> createLibro(@RequestBody Libro libro){
+    public ResponseEntity<Libro> createLibro(@Valid @RequestBody Libro libro){
         Libro newLibro = libroService.create(libro);
         return ResponseEntity.status(HttpStatus.CREATED).body(newLibro);
     }
 
     @PutMapping("/{id}")
-    public Libro updateLibro(@PathVariable Long id, @RequestBody Libro libro){
+    public Libro updateLibro(@PathVariable Long id, @Valid @RequestBody Libro libro){
         return libroService.update(id, libro);
     }
 
