@@ -31,7 +31,7 @@ public class LibroService {
         Libro libro = libroRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Book with ID: "+id+" not found"));
         libro.setNombre(libroDetails.getNombre());
-        libro.setId_autor(libroDetails.getId_autor());
+        libro.setAutor(libroDetails.getAutor());
         return libroRepository.save(libro);
     }
 

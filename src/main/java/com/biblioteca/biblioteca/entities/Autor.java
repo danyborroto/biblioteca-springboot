@@ -1,17 +1,18 @@
 package com.biblioteca.biblioteca.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-public class Libro {
+public class Autor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "The name is mandatory")
     private String nombre;
-    @ManyToOne
-    private Autor autor;
 
     public Long getId() {
         return id;
@@ -21,19 +22,11 @@ public class Libro {
         this.id = id;
     }
 
-    public String getNombre() {
+    public @NotBlank(message = "The name is mandatory") String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(@NotBlank(message = "The name is mandatory") String nombre) {
         this.nombre = nombre;
-    }
-
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
     }
 }
